@@ -40,9 +40,11 @@ Several buttons pre-loaded for various gifs to load depending on what button is 
 
 ##Technologies Used
 
-*javascript
-*ajax
+*CSS
+*Javascript
+*Ajax
 *api
+*jQuery
 
 ##Code Explanation
 

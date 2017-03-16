@@ -10,6 +10,7 @@ for (var i = 0; i < topics.length; i++) {
       $("#characterButtons").prepend(charButton);
 }
 
+$(document).ready(function() {
 $("#add-to-do").on("click", function(event) {
       event.preventDefault();
 
@@ -97,7 +98,8 @@ $("button").on("click", function() {
         });
     });
 
-$('.gif').click(function() {
+$("body").on("click", ".gif", function() {
+      console.log("hi");
       // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
       var state = $(this).attr("data-state");
       console.log(state);
@@ -111,5 +113,7 @@ $('.gif').click(function() {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
       }
+});
+
 });
   

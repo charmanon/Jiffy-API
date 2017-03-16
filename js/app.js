@@ -1,3 +1,15 @@
+var topics = ["Adventure Time", "Gravity Falls", "Bob's Burgers", "Regular Show", "Steven Universe"];
+
+for (var i = 0; i < topics.length; i++) {
+
+      // Creating and storing a button tag
+      var charButton = $("<button>");
+
+      charButton.html(topics[i]);
+      // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+      $("#characterButtons").prepend(charButton);
+}
+
 $("#add-to-do").on("click", function(event) {
       event.preventDefault();
 
@@ -39,11 +51,11 @@ $("#add-to-do").on("click", function(event) {
 // Adding click event listen listener to all buttons
 $("button").on("click", function() {
       // Grabbing and storing the data-animal property value from the button
-      var animal = $(this).attr("data-animal");
+      var char = $(this).html();
 
       // Constructing a queryURL using the animal name
       var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
-        animal + "&api_key=dc6zaTOxFJmzC&limit=10";
+        char + "&api_key=dc6zaTOxFJmzC&limit=10";
 
       // Performing an AJAX request with the queryURL
       $.ajax({
@@ -62,28 +74,33 @@ $("button").on("click", function() {
           for (var i = 0; i < results.length; i++) {
 
             // Creating and storing a div tag
-            var animalDiv = $("<div>");
+            var charDiv = $("<div>");
 
             // Creating a paragraph tag with the result item's rating
             var p = $("<p>").text("Rating: " + results[i].rating);
 
             // Creating and storing an image tag
-            var animalImage = $("<img>");
+            var charImage = $("<img>");
             // Setting the src attribute of the image to a property pulled off the result item
-            animalImage.attr("src", results[i].images.fixed_height.url);
-
+            charImage.attr("src", results[i].images.fixed_height_still.url);
+            charImage.attr("data-still", results[i].images.fixed_height_still.url);
+            charImage.attr("data-state", "still");
+            charImage.attr("data-animate", results[i].images.fixed_height.url);
+            charImage.attr("class", "gif");
             // Appending the paragraph and image tag to the animalDiv
-            animalDiv.append(p);
-            animalDiv.append(animalImage);
+            charDiv.append(p);
+            charDiv.append(charImage);
 
             // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-            $("#gifs-appear-here").prepend(animalDiv);
+            $("#characters").prepend(charDiv);
           }
         });
     });
-    $(".gif").on("click", function() {
+
+$('.gif').click(function() {
       // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
       var state = $(this).attr("data-state");
+      console.log(state);
       // If the clicked image's state is still, update its src attribute to what its data-animate value is.
       // Then, set the image's data-state to animate
       // Else set src to the data-still value
@@ -94,5 +111,5 @@ $("button").on("click", function() {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
       }
-    });
+});
   

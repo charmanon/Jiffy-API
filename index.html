@@ -4,24 +4,30 @@
 <head>
   <meta charset="utf-8">
   <title>Character Buttons</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/reset.css" rel="stylesheet" type="text/css"> 
   <link href="assets/style.css" rel="stylesheet" type="text/css"> 
 </head>
 
 <body>
+  <header class = "jumbotron">Yummy Jiffs</header>
   <div id="characterButtons">
 
   </div>
+  <div class="row">
 
-  <form id = "character">
-    <label form = "character-input">Add a show!</label>
-    <input type ="text" id="character-input"><br>
-    <input id="addChar" type="submit" value="Submit">
-  </form>
 
-  <div id="characters">
+    <form id = "character" class="col-xs-12 col-md-3">
+      <label form = "character-input">Add a show!</label>
+      <input type ="text" id="character-input"><br>
+      <input id="addChar" type="submit" value="Submit">
+    </form>
+
+    <div id="characters" class="col-xs-12 col-md-9">
+    </div>
   </div>
-
   <script src="js/app.js"></script>
 
 </body>

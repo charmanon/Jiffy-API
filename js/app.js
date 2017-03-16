@@ -18,11 +18,17 @@ $(document).ready(function() {
 
 $("#addChar").on("click", function(event) {
       event.preventDefault();
-
-      // Get the to-do "value" from the textbox and store it a variable
       var addChar = $("#character-input").val().trim();
-      topics.push(addChar);
-      displayTopic();      
+
+      if (addChar === ""){
+           $("#character-input").attr("placeholder", "Please type in a show!");
+      }  
+      else {
+            // Get the to-do "value" from the textbox and store it a variable
+            topics.push(addChar);
+            displayTopic();  
+            $("#character-input").html("");  
+      }
     });
 
 // Adding click event listen listener to all buttons
@@ -53,7 +59,7 @@ $("#characterButtons").on("click", "button", function() {
           for (var i = 0; i < results.length; i++) {
 
             // Creating and storing a div tag
-            var charDiv = $("<div>");
+            var charDiv = $("<div id='char'>");
 
             // Creating a paragraph tag with the result item's rating
             var p = $("<p>").text("Rating: " + results[i].rating);
@@ -67,8 +73,8 @@ $("#characterButtons").on("click", "button", function() {
             charImage.attr("data-animate", results[i].images.fixed_height.url);
             charImage.attr("class", "gif");
             // Appending the paragraph and image tag to the animalDiv
-            charDiv.append(p);
             charDiv.append(charImage);
+            charDiv.append(p);
 
             // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
             $("#characters").prepend(charDiv);
@@ -77,10 +83,8 @@ $("#characterButtons").on("click", "button", function() {
     });
 
 $("body").on("click", ".gif", function() {
-      console.log("hi");
       // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
       var state = $(this).attr("data-state");
-      console.log(state);
       // If the clicked image's state is still, update its src attribute to what its data-animate value is.
       // Then, set the image's data-state to animate
       // Else set src to the data-still value

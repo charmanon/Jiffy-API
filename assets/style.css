@@ -1,3 +1,44 @@
-img{
-	z-index: 99;
+body{
+	background:black;
+}
+
+#characterButtons{
+	margin: 5px;
+}
+
+#character{
+	margin:20px;
+}
+
+#characters{
+	margin:20px;
+}
+
+label{
+	color:white;
+}
+
+.jumbotron{
+	text-align: center;
+	font-size: 3em;
+}
+
+button{
+	padding:5px;
+	margin: 10px;
+	color:black;
+}
+
+#addChar{
+	color:black;
+}
+
+p{
+	padding:10px;
+	color:white;
+}
+
+#char{
+	float:left;
+	margin:10px;
 }

@@ -37,6 +37,8 @@ $("#characterButtons").on("click", "button", function() {
       // Performing an AJAX request with the queryURL
       $.ajax({
           url: queryURL,
+          dataType: "json",
+          crossDomain: true,
           method: "GET"
         })
         // After data comes back from the request

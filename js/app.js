@@ -1,60 +1,36 @@
 var topics = ["Adventure Time", "Gravity Falls", "Bob's Burgers", "Regular Show", "Steven Universe"];
 
-for (var i = 0; i < topics.length; i++) {
-
+function displayTopic(){
+      $("#characterButtons").text("");
+      for (var i = 0; i < topics.length; i++) {
       // Creating and storing a button tag
       var charButton = $("<button>");
 
       charButton.html(topics[i]);
       // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-      $("#characterButtons").prepend(charButton);
+      $("#characterButtons").append(charButton);
+      }
 }
 
+displayTopic();
+
 $(document).ready(function() {
-$("#add-to-do").on("click", function(event) {
+
+$("#addChar").on("click", function(event) {
       event.preventDefault();
 
       // Get the to-do "value" from the textbox and store it a variable
-      var toDoTask = $("#to-do").val().trim();
-
-      // Create a new variable that will hold a "<p>" tag.
-      // Then give it an ID in the following form:
-      // "item-4" or "item-3" or "item-99", where the number is equal to toDoCount.
-      // Then append the to-do "value" as text to this <p> element.
-      var toDoItem = $("<p>");
-
-      toDoItem.attr("id", "item-" + toDoCount);
-      toDoItem.append(" " + toDoTask);
-
-      // Create a button with unique identifiers based on what number it is in the list. Again use jQuery to do this.
-      // Give your button a data attribute called data-to-do and a class called "checkbox".
-      // Lastly append the letter X inside.
-
-      var toDoClose = $("<button>");
-
-      toDoClose.attr("data-to-do", toDoCount);
-      toDoClose.addClass("checkbox");
-      toDoClose.append("✓");
-
-      // Append the button to the to do item
-      toDoItem = toDoItem.prepend(toDoClose);
-
-      // Add the button and to do item to the to-dos div
-      $("#to-dos").append(toDoItem);
-
-      // Clear the textbox when done
-      $("#to-do").val("");
-
-      // Add to the toDoCount
-      toDoCount++;
+      var addChar = $("#character-input").val().trim();
+      topics.push(addChar);
+      displayTopic();      
     });
 
 // Adding click event listen listener to all buttons
-$("button").on("click", function() {
-      // Grabbing and storing the data-animal property value from the button
+$("#characterButtons").on("click", "button", function() {
+      // Grabbing and storing the html property value from the button
       var char = $(this).html();
 
-      // Constructing a queryURL using the animal name
+      // Constructing a queryURL using the character name
       var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
         char + "&api_key=dc6zaTOxFJmzC&limit=10";
 
